@@ -188,6 +188,23 @@ head(total_steps_per_day_filled)
 ## 6       2012-10-06          15420.00
 ```
 constructing a histogram to display the results; using `ggplot2`
+
+``` r
+# import ggplot2
+library(ggplot2)
+
+## change the names so they appear better in the graph and also 
+names(total_steps_per_day_filled) <- c("date", "stepsPerDay")
+
+# construcdt the histogram in ggplot2
+#define the data series
+ggplot(total_steps_per_day_filled, aes(x = stepsPerDay)) + 
+    #edit the visuals: colors, title and make the Y axis make sense (goes up by 1)
+  geom_histogram(color = "black", fill = "blue", binwidth = 1000) +
+  labs(title = "Histogram of Steps Recorded Per Day")+
+  scale_y_continuous(breaks = seq(0, max(total_steps_per_day_filled$stepsPerDay), by = 1))
+```
+
 ![](PA1_template_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
 
 calculating and reporting the mean and median steps for every day
